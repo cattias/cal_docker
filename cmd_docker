@@ -1,0 +1,11 @@
+#!/bin/sh
+
+#docker run -i -t --name mysql_data cannesalair/mysql_datastore
+#docker build -t cannesalair/backend .
+
+docker ps -a -q | xargs docker rm -f
+
+docker run --name cal_mysql -e MYSQL_ROOT_PASSWORD=gpIDdmdp2014 -d -v /home/kiki/workspace/cannesalair-mysqldata/var/lib/mysql:/var/lib/mysql mysql
+docker run --name cal_backend -d -v /home/kiki/workspace/cannesalair-site/cannesalair:/cannesalair --link=cal_mysql:mysqlcal cannesalair/backend
+docker run --name cal_nginx -d --link=cal_backend:backend -v /home/kiki/workspace/cannesalair-nginx/nginx.cannesalair.config:/etc/nginx/sites-available/default -p 80:80 --volumes-from=cal_backend dockerfile/nginx
+
