@@ -7,6 +7,7 @@ RUN apt-get -y update
 RUN apt-get -y install libjpeg-dev libfreetype6-dev zlib1g-dev python-imaging python-pip python-dev libevent-dev python-distribute libmysqlclient-dev
 
 ADD ./cannesalair/requirements.txt /cannesalair/requirements.txt
+ADD ./configuration/config.properties /cannesalair/config.properties
 
 RUN ln -s /usr/lib/`uname -i`-linux-gnu/libfreetype.so /usr/lib/
 RUN ln -s /usr/lib/`uname -i`-linux-gnu/libjpeg.so /usr/lib/
