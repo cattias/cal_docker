@@ -7,7 +7,7 @@ RUN apt-get -y update
 RUN apt-get -y install libjpeg-dev libfreetype6-dev zlib1g-dev python-imaging python-pip python-dev libevent-dev python-distribute libmysqlclient-dev
 
 ADD ./cannesalair/requirements.txt /cannesalair/requirements.txt
-ADD ./configuration/config.properties /cannesalair/config.properties
+#ADD ./configuration/config.properties /cannesalair/config.properties
 
 RUN ln -s /usr/lib/`uname -i`-linux-gnu/libfreetype.so /usr/lib/
 RUN ln -s /usr/lib/`uname -i`-linux-gnu/libjpeg.so /usr/lib/
@@ -20,7 +20,7 @@ RUN easy_install -U Djblets==0.6.18
 WORKDIR /cannesalair
 
 EXPOSE 9005
-ENTRYPOINT gunicorn_django -b 0.0.0.0:9005
+ENTRYPOINT gunicorn_django -b 0.0.0.0:9005 --workers=10
 
 #CMD python manage.py runserver 0.0.0.0:9005
 
