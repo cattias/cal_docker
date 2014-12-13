@@ -1,6 +1,7 @@
 #!/bin/sh
 
 #docker run -i -t --name mysql_data cannesalair/mysql_datastore
+#docker run -i -t -v /home/cal/cannesalair.fr/cal/cannesalair:/cannesalair cannesalair/backend
 #docker build -t cannesalair/backend .
 
 #docker ps -a -q | xargs docker rm -f
